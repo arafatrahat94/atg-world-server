@@ -84,7 +84,7 @@ post.post("/Comment", async (req, res) => {
 });
 post.get("/Comment/:id", async (req, res) => {
   const id = req.params.id;
-  const query = { postId: new ObjectId(id) };
+  const query = { postId: id };
   const result = await commentCollection.find(query).toArray();
 
   if (result === undefined) {
