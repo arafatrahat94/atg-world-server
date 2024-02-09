@@ -82,5 +82,14 @@ post.post("/Comment", async (req, res) => {
   const result = await commentCollection.insertOne(body);
   res.send(result);
 });
+post.get("/Comment/:id", async (req, res) => {
+  const id = req.params.id;
+  const query = { postId: new ObjectId(id) };
+  const result = await commentCollection.find(query).toArray();
 
+  if (result === undefined) {
+    res.send([]);
+  }
+  res.send(result);
+});
 module.exports = post;
